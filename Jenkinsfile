@@ -1,5 +1,11 @@
 pipeline {
-    agent any
+    agent{
+            label "slave-1"
+        }
+        tools {
+            maven 'maven'
+            // jdk 'jdk8'
+        }
     stages {
 
         stage('Testing') {
