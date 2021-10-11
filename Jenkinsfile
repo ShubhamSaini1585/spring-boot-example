@@ -1,9 +1,4 @@
-
-  
 pipeline{
-    // triggers{
-    //     pollSCM('H 0 * * 2')
-    // }
     agent{
         label "master"
     }
@@ -20,14 +15,11 @@ pipeline{
 
     }
     post{
-        // always{
-        //     //echo "========always========"
-        // }
         success{
-            echo "========pipeline executed successfully ========"
+            echo "Pipeline Executed Successfully"
         }
         failure{
-            echo "========pipeline execution failed========"
+            echo "Pipeline Execution Failed"
         }
     }
 }
