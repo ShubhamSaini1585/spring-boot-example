@@ -4,8 +4,16 @@ pipeline {
         stage{
             steps{
                 echo "Production branch"
-                sh ''
+                sh 'mvn clean package'
             }
+        }
+    }
+    post {
+        success {
+            echo "Packaging successful"
+        }
+        failure {
+            echo "Packaging unsuccessful"
         }
     }
 }
