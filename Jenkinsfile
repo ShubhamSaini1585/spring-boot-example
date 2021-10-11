@@ -1,7 +1,7 @@
 pipeline {
     agent none
     stages {
-        stage {
+        stage("Production") {
             steps {
                 //echo "Production branch"
                 sh 'mvn clean package'
