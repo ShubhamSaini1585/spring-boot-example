@@ -6,12 +6,14 @@ pipeline {
             maven 'maven'
             // jdk 'jdk8'
         }
+
     stages {
 
         stage('Testing') {
             steps {
-                echo 'Testing the application...'
+                echo 'Testing the Application...'
                 sh "mvn clean test"
+
             }
         }
     }
