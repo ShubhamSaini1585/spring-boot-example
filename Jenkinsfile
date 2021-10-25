@@ -7,9 +7,33 @@ pipeline{
         jdk 'jdk 11'
     }
     stages{
-        stage("building"){
+        stage("Cleaning"){
             steps{
-                sh "mvn clean package"
+                sh "mvn clean"
+                sh "ls"
+            }
+        }
+        stage("Compile"){
+            When{
+                branch 'development'
+            }
+            steps{
+                sh "mvn compile"
+            }
+        }
+                stage("testing"){
+            steps{
+                //sh "mvn test"
+                sh 'echo "Listing the files in the current dir"'
+                sh "ls"
+            }
+        }
+        stage("packaging"){
+            when{
+                expression { BRANCH_NAME ==~ /(development)/ }
+            }
+            steps{
+                sh 'mvn package'
             }
         }
 
