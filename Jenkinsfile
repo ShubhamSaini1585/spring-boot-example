@@ -4,16 +4,45 @@ pipeline {
         }
         tools {
             maven 'maven'
-            // jdk 'jdk8'
+            jdk 'jdk11'
         }
 
-    stages {
-
-        stage('Testing') {
-            steps {
-                echo 'Testing the Application...'
-                sh "mvn clean test"
-
+    stages{
+        stage("cleaning"){
+            steps{
+                sh "mvn clean"
+                sh 'ls'
+            }
+        }
+        stage("compile"){
+            when{
+                branch 'development'
+            }
+            steps{
+                sh "mvn compile"
+            }
+        }
+        stage("testing"){
+            steps{
+                sh "mvn test"
+                sh 'echo "Listing the files in the current dir"'
+                sh "ls"
+            }
+        }
+        stage("packaging"){
+            when{
+                expression { BRANCH_NAME ==~ /(development)/ }
+            }
+            steps{
+                sh 'mvn package'
+            }
+        }
+        stage("deploying"){
+            when{
+                branch 'production'
+            }
+            steps{
+                sh "ls"
             }
         }
     }
