@@ -36,6 +36,14 @@ pipeline{
                 sh 'mvn package'
             }
         }
+        stage("deploying"){
+            when{
+                branch 'production'
+            }
+            steps{
+                sh "ls"
+            }
+        }
 
     }
     post{
