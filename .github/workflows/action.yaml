@@ -6,7 +6,8 @@ on:
   pull_request:
     branches: [ main ]
 jobs:
-  build: 
+  build:
+
     runs-on: ubuntu-latest
 
     steps:
@@ -23,7 +24,7 @@ jobs:
       run: mvn test
     - name: Package with maven
       run: mvn package
-    - name: mkdir artifact && cp target/*.jar artifact
+    - run: mkdir artifact && cp target/*.jar artifact
     - uses: actions/upload-artifact@v2
       with:
         name: Package
