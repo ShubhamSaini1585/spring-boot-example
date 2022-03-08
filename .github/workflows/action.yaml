@@ -3,7 +3,7 @@ name: MavenCI
 on:
   push:
     branches: [ main ]
-  pill_requests:
+  pull_requests:
     branches: [ main ]
 jobs:
   build: 
